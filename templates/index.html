@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Color Analysis</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link href="../static/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="main-app">
+      <h2>Color Analysis of Image</h2>
+      <center>
+        <div class="main-content">
+          <div class="user-input">
+            <form method="POST" enctype="multipart/form-data">
+              <input type="file" name="image" accept="image/*" required />
+              <button type="submit" class="btn btn-primary rounded-pill px-3">
+                Analyze
+              </button>
+            </form>
+          </div>
+          <div class="colors-row">
+            {% if colors %}
+            <h3>Most Common Colors:</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>Color</td>
+                  <td>RGB Value</td>
+                  <td>Count</td>
+                </tr>
+              </thead>
+              {% for item in range(25)%}
+              <tr>
+                <td
+                  style="border: 1.5px solid rgb(255, 255, 255);
+                  align-items: center;
+                  padding: 3px;
+                  width: 20%;
+                    background-color: rgb{{ colors[item].color }};"
+                ></td>
+                <td>{{ colors[item].color }}</td>
+                <td>{{ colors[item].count }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+            <!-- </ul> -->
+            {% endif %}
+          </div>
+        </div>
+      </center>
+    </div>
+  </body>
+</html>
